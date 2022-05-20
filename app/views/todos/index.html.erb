@@ -7,6 +7,11 @@
     <li>
     <%= link_to todo.title, todo_path(todo) %>
     <%= link_to '[Edit]', edit_todo_path(todo), class: 'command' %>
+    <%= link_to '[×]',
+    todo_path(todo),
+    method: :delete,
+    class: 'command',
+    data: {confirm: 'Sure?' } %>
     </li>
     <% end %>
 </ul>
