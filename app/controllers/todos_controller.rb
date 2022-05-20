@@ -9,6 +9,7 @@ class TodosController < ApplicationController
     end
     
     def new
+        @todo = Todo.new
     end
     
     def create
@@ -16,9 +17,13 @@ class TodosController < ApplicationController
         # save
         # @todo = Todo.new(params[:todo])
         @todo = Todo.new(post_params)
-        @todo.save
-        # redirect
-        redirect_to todos_path
+        if @todo.save
+            # redirect
+            redirect_to todos_path
+        else 
+            # render plain: @todo.errors.inspect
+            render 'new'
+        end
     end
     
     private
