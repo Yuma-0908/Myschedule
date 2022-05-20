@@ -4,4 +4,25 @@ class TodosController < ApplicationController
         @todos = Todo.all.order(created_at: 'desc')
     end
     
+    def show
+        @todo = Todo.find(params[:id])
+    end
+    
+    def new
+    end
+    
+    def create
+        # render plain: params[:todo].inspect
+        # save
+        # @todo = Todo.new(params[:todo])
+        @todo = Todo.new(post_params)
+        @todo.save
+        # redirect
+        redirect_to todos_path
+    end
+    
+    private
+        def post_params
+            params.require(:todo).permit(:title, :body)
+        end
 end
