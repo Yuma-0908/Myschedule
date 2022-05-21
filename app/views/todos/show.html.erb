@@ -1,2 +1,12 @@
 <h2><%= @todo.title %></h2>
 <p><%= simple_format @todo.body %></p>
+
+<h3>Comments</h3>
+<%= form_for ([@todo, @todo.comments.build]) do |f| %>
+<p>
+    <%= f.text_field :body %>
+</p>
+<p>
+    <%= f.submit %>
+</p>
+<% end %>
